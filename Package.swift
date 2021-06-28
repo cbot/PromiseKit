@@ -4,10 +4,11 @@ import PackageDescription
 
 let pkg = Package(name: "PromiseKit")
 pkg.platforms = [
-   .macOS(.v10_10), .iOS(.v9), .tvOS(.v9), .watchOS(.v2)
+   .macOS(.v10_10), .iOS(.v11), .tvOS(.v9), .watchOS(.v7)
 ]
 pkg.products = [
     .library(name: "PromiseKit", targets: ["PromiseKit"]),
+    .library(name: "PromiseKitDynamic", type: .dynamic, targets: ["PromiseKit"])
 ]
 
 let pmk: Target = .target(name: "PromiseKit")
@@ -26,7 +27,6 @@ pmk.exclude = [
     "Deprecations.swift",
     "Info.plist"
 ]
-pkg.swiftLanguageVersions = [.v4, .v4_2, .v5]
 pkg.targets = [
     pmk,
     .testTarget(name: "APlus", dependencies: ["PromiseKit"], path: "Tests/A+", exclude: ["README.md"]),
